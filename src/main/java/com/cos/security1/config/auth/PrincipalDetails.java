@@ -40,32 +40,32 @@ public class PrincipalDetails implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
+    public String getPassword() { // 계정의 패스워드를 반환
         return user.getPassword();
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername() { // 계정의 이름을 반환
         return user.getUsername();
     }
 
     @Override
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired() { // 계정이 만료되었는지를 판단(true 반환하면 만료되지 않았음)
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
+    public boolean isAccountNonLocked() { // 계정이 잠겨있지 않은지를 판단(true 반환하면 잠겨있지 않음)
         return true;
     }
 
-    @Override // 비밀번호 사용이 너무 오래됐는지 확인
-    public boolean isCredentialsNonExpired() {
+    @Override 
+    public boolean isCredentialsNonExpired() { // 계정 비밀번호가 만료되었는지를 판단(true 반환하면 만료되지 않았음)
         return true;
     }
 
-    @Override // 계정이 활성화됐는지 확인
-    public boolean isEnabled() {
+    @Override 
+    public boolean isEnabled() { // 계정이 사용가능한지 판단(true 반환하면 사용가능)
 
         // 우리 사이트에서 1년동안 회원이 로그인을 안하면 휴먼 계정으로 하기로 함
         // 현재시간 - 로그인시간 => 1년을 초과하면 return false
