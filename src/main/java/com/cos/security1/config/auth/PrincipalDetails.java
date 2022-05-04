@@ -23,8 +23,8 @@ public class PrincipalDetails implements UserDetails {
         this.user = user;
     }
 
-    // 해당 User의 권한을 리턴하는 곳
-    @Override
+    
+    @Override // 계정이 갖고있는 권한 목록을 리턴
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> collect = new ArrayList<>();
         collect.add((GrantedAuthority) () -> user.getRole());
@@ -39,33 +39,33 @@ public class PrincipalDetails implements UserDetails {
         return collect;
     }
 
-    @Override
-    public String getPassword() { // 계정의 패스워드를 반환
+    @Override // 계정의 패스워드를 반환
+    public String getPassword() {
         return user.getPassword();
     }
 
-    @Override
-    public String getUsername() { // 계정의 이름을 반환
+    @Override // 계정의 이름을 반환
+    public String getUsername() {
         return user.getUsername();
     }
 
-    @Override
-    public boolean isAccountNonExpired() { // 계정이 만료되었는지를 판단(true 반환하면 만료되지 않았음)
+    @Override // 계정이 만료되었는지를 판단(true 반환하면 만료되지 않았음)
+    public boolean isAccountNonExpired() {
         return true;
     }
 
-    @Override
-    public boolean isAccountNonLocked() { // 계정이 잠겨있지 않은지를 판단(true 반환하면 잠겨있지 않음)
+    @Override // 계정이 잠겨있지 않은지를 판단(true 반환하면 잠겨있지 않음)
+    public boolean isAccountNonLocked() {
         return true;
     }
 
-    @Override 
-    public boolean isCredentialsNonExpired() { // 계정 비밀번호가 만료되었는지를 판단(true 반환하면 만료되지 않았음)
+    @Override // 계정 비밀번호가 만료되었는지를 판단(true 반환하면 만료되지 않았음)
+    public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    @Override 
-    public boolean isEnabled() { // 계정이 사용가능한지 판단(true 반환하면 사용가능)
+    @Override // 계정이 사용가능한지 판단(true 반환하면 사용가능)
+    public boolean isEnabled() {
 
         // 우리 사이트에서 1년동안 회원이 로그인을 안하면 휴먼 계정으로 하기로 함
         // 현재시간 - 로그인시간 => 1년을 초과하면 return false
